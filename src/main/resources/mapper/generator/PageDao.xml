@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.group.e_diary.generator.dao.PageDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.group.e_diary.generator.entity.PageEntity" id="pageMap">
+        <result property="id" column="id"/>
+        <result property="diaryId" column="diary_id"/>
+        <result property="index" column="index"/>
+        <result property="content" column="content"/>
+        <result property="text" column="text"/>
+    </resultMap>
+
+
+</mapper>
