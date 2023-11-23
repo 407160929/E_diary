@@ -2,6 +2,7 @@ package com.group.e_diary.generator.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.group.common.utils.PageUtils;
+import com.group.common.utils.R;
 import com.group.e_diary.generator.entity.UserEntity;
 
 import java.util.Map;
@@ -16,5 +17,7 @@ import java.util.Map;
 public interface UserService extends IService<UserEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    R login(UserEntity user);
 }
 

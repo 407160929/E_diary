@@ -7,9 +7,9 @@
     <resultMap type="com.group.e_diary.generator.entity.PageEntity" id="pageMap">
         <result property="id" column="id"/>
         <result property="diaryId" column="diary_id"/>
-        <result property="index" column="index"/>
+        <result property="indexId" column="index_id"/>
         <result property="content" column="content"/>
-        <result property="text" column="text"/>
+        <result property="textContent" column="text_content"/>
     </resultMap>
 
 

@@ -10,9 +10,16 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: auto
+      logic-delete-value: 1
+      logic-not-delete-value: 0
 server:
   port: 8090
 
 logging:
   level:
     com.example.demo: debug
+
+oss:
+  accessKey: BtRgRXpHFfIAeMe8bRhQPbyjAq9JbKuZ7GfNPpbP
+  secretKey: X_QUlxg4WxQzs3gYmlT6l1Zi9azoQkPR_M-mmGMh
+  bucket: ediary

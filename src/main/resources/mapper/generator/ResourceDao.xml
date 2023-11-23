@@ -14,6 +14,8 @@
         <result property="likes" column="likes"/>
         <result property="uses" column="uses"/>
         <result property="content" column="content"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
     </resultMap>
 
 

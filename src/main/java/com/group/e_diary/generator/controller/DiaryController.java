@@ -1,8 +1,11 @@
 package com.group.e_diary.generator.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,22 +32,22 @@ public class DiaryController {
     /**
      * 列表
      */
-    @RequestMapping("/list/{id}")
-    public R list(@RequestParam Map<String, Object> params){
-        //todo 获取某个用户所有日记
-        PageUtils page = diaryService.queryPage(params);
-
-        return R.ok().put("page", page);
+    @GetMapping("/list/{id}")
+    public R list(@PathVariable("id") Long id){
+        //获取某个用户所有日记
+        List<DiaryEntity> diaryEntities = diaryService.list(new QueryWrapper<DiaryEntity>().eq("user_id", id));
+        List<Long> list = diaryEntities.stream().map(diaryEntity -> diaryEntity.getId()).collect(Collectors.toList());
+        return R.ok().put("data",list);
     }
 
 
     /**
      * 信息
      */
-    @RequestMapping("/info/{id}")
+    @GetMapping("/info/{id}")
     public R info(@PathVariable("id") Long id){
 		DiaryEntity diary = diaryService.getById(id);
-        //todo 获取日记
+        //获取日记
         return R.ok().put("diary", diary);
     }
 
@@ -53,28 +56,28 @@ public class DiaryController {
      */
     @PostMapping ("/create")
     public R save(@RequestBody DiaryEntity diary){
+        //创建日记
 		diaryService.save(diary);
-        //todo 创建日记
         return R.ok();
     }
 
     /**
      * 修改
      */
-    @RequestMapping("/update")
+    @PostMapping("/update")
     public R update(@RequestBody DiaryEntity diary){
+        //更新日记
 		diaryService.updateById(diary);
-        //todo 更新日记
         return R.ok();
     }
 
     /**
      * 删除
      */
-    @RequestMapping("/delete")
-    public R delete(@RequestBody Long[] ids){
-		diaryService.removeByIds(Arrays.asList(ids));
-        //todo 删除日记
+    @PostMapping("/delete")
+    public R delete(@RequestBody int diaryId){
+        //删除日记
+        diaryService.removeById(diaryId);
         return R.ok();
     }
 

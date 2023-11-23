@@ -1,5 +1,6 @@
 package com.group.e_diary.generator.service.impl;
 
+import com.group.common.utils.R;
 import org.springframework.stereotype.Service;
 import java.util.Map;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -24,6 +25,13 @@ public class UserServiceImpl extends ServiceImpl<UserDao, UserEntity> implements
         );
 
         return new PageUtils(page);
+    }
+
+    @Override
+    public R login(UserEntity user) {
+
+        UserEntity user1 = getOne(new QueryWrapper<UserEntity>().eq("account", user.getAccount()).eq("password", user.getPassword()));
+        return user1!=null?R.ok().put("data", user1):R.error(400,"账号或密码错误");
     }
 
 }

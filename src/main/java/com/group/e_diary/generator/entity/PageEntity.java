@@ -31,7 +31,7 @@ public class PageEntity implements Serializable {
 	/**
 	 * 
 	 */
-	private Integer index;
+	private Integer indexId;
 	/**
 	 * 
 	 */
@@ -39,6 +39,6 @@ public class PageEntity implements Serializable {
 	/**
 	 * 
 	 */
-	private String text;
+	private String textContent;
 
 }

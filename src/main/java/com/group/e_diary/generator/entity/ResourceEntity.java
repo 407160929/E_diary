@@ -1,7 +1,6 @@
 package com.group.e_diary.generator.entity;
 
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -43,6 +42,7 @@ public class ResourceEntity implements Serializable {
 	/**
 	 * 
 	 */
+	@TableLogic
 	private Integer isDelete;
 	/**
 	 * 
@@ -56,5 +56,17 @@ public class ResourceEntity implements Serializable {
 	 * 
 	 */
 	private String content;
+
+	/**
+	 *
+	 */
+	@TableField(fill = FieldFill.INSERT)
+	private Date createTime;
+	/**
+	 *
+	 */
+	@TableField(fill = FieldFill.INSERT_UPDATE)
+	private Date updateTime;
+
 
 }

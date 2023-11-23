@@ -1,14 +1,14 @@
 package com.group.e_diary.generator.controller;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.group.e_diary.generator.entity.PageEntity;
 import com.group.e_diary.generator.service.PageService;
@@ -34,50 +34,60 @@ public class PageController {
      * 列表
      */
     @RequestMapping("/list/{id}")
-    public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = pageService.queryPage(params);
-        //todo 获取某个日记的所有页id
-        return R.ok().put("page", page);
+    public R list(@PathVariable("id") Long id){
+        //获取某个日记的所有页id
+        List<PageEntity> pageEntities = pageService.list(new QueryWrapper<PageEntity>().eq("diary_id", id).orderByAsc("index_id"));
+        List<Long> list = pageEntities.stream().map(pageEntity -> pageEntity.getId()).collect(Collectors.toList());
+        return R.ok().put("data", list);
     }
 
 
     /**
      * 信息
      */
-    @RequestMapping("/info/{id}")
+    @GetMapping("/info/{id}")
     public R info(@PathVariable("id") Long id){
+        //获取日记页
+
 		PageEntity page = pageService.getById(id);
-        //todo 获取日记页
-        return R.ok().put("page", page);
+        return R.ok().put("data", page);
     }
 
     /**
      * 保存
      */
-    @RequestMapping("/create")
+    @PostMapping("/create")
     public R save(@RequestBody PageEntity page){
-		pageService.save(page);
-        //todo 新增日记页
+        //新增日记页
+        List<PageEntity> pageEntities = pageService.list(new QueryWrapper<PageEntity>().eq("diary_id", page.getDiaryId()));
+        List<Integer> integerList = pageEntities.stream().map(pageEntity -> pageEntity.getIndexId()).collect(Collectors.toList());
+        Integer max =0;
+        if(integerList.size() > 0){
+            max = Collections.max(integerList);
+        }
+        page.setIndexId(max+1);
+        pageService.save(page);
         return R.ok();
     }
 
     /**
      * 修改
      */
-    @RequestMapping("/update")
+    @PostMapping("/update")
     public R update(@RequestBody PageEntity page){
+        //更新日记页
+
 		pageService.updateById(page);
-        //todo 更新日记页
         return R.ok();
     }
 
     /**
      * 删除
      */
-    @RequestMapping("/delete")
+    @PostMapping("/delete")
     public R delete(@RequestBody Long[] ids){
+        //删除日记页,只能删除最后一页
 		pageService.removeByIds(Arrays.asList(ids));
-        //todo 删除日记页
         return R.ok();
     }
 
