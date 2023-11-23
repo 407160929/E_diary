@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.*;
 import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * 
@@ -48,6 +49,7 @@ public class DiaryEntity implements Serializable {
 	 * 
 	 */
 	private Integer likes;
+	private String description;
 	/**
 	 * 
 	 */
@@ -56,11 +58,13 @@ public class DiaryEntity implements Serializable {
 	 * 
 	 */
 	@TableField(fill = FieldFill.INSERT)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date createTime;
 	/**
 	 * 
 	 */
 	@TableField(fill = FieldFill.INSERT_UPDATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updateTime;
 
 }
