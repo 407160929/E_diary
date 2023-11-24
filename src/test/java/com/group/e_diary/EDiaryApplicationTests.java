@@ -34,7 +34,7 @@ class EDiaryApplicationTests {
     @Test
     void contextLoads(){
         try {
-            gptService.get("");
+            gptService.get("什么是太阳");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

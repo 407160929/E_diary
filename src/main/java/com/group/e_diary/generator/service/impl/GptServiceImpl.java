@@ -1,5 +1,6 @@
 package com.group.e_diary.generator.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.group.common.utils.R;
 import com.group.e_diary.generator.service.GptService;
 import okhttp3.*;
@@ -22,16 +23,18 @@ public class GptServiceImpl implements GptService {
     @Override
     public R get(String query) throws IOException {
         MediaType mediaType = MediaType.parse("application/json");
-        RequestBody body = RequestBody.create(mediaType, "{\"messages\":[{\"role\":\"user\",\"content\":\""+query+"\"}]}");
+        RequestBody body = RequestBody.create(mediaType,  "{\"messages\":[{\"role\":\"user\",\"content\":\""+query+"\"}]}");
+        //"+query+"
         Request request = new Request.Builder()
                 .url("https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/completions_pro?access_token=" + getAccessToken())
                 .method("POST", body)
                 .addHeader("Content-Type", "application/json")
                 .build();
         Response response = HTTP_CLIENT.newCall(request).execute();
-        System.out.println(response.body().string());
-
-        return R.ok().put("data", response.body().string());
+        com.alibaba.fastjson.JSONObject jsonObject = JSON.parseObject(response.body().string());
+        String result = (String) jsonObject.get("result");
+        System.out.println(result);
+        return R.ok().put("data",result);
     }
 
     /**
