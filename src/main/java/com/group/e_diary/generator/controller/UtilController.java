@@ -16,16 +16,16 @@ public class UtilController {
 
     @Autowired
     private UploadService uploadService;
-    @Autowired
-    private GptService gptService;
+//    @Autowired
+//    private GptService gptService;
     @PostMapping("/upload")
     public ResponseResult uploadImg(MultipartFile img){
         return uploadService.uploadImg(img);
     }
 
-    @PostMapping("/gpt")
-    public R gpt(@RequestBody String query){
-        return gptService.get(query);
-    }
+//    @PostMapping("/gpt")
+//    public R gpt(@RequestBody String query){
+//        return gptService.get(query);
+//    }
 
 }

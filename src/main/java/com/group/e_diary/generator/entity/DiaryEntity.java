@@ -58,13 +58,13 @@ public class DiaryEntity implements Serializable {
 	 * 
 	 */
 	@TableField(fill = FieldFill.INSERT)
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date createTime;
 	/**
 	 * 
 	 */
 	@TableField(fill = FieldFill.INSERT_UPDATE)
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date updateTime;
 
 }
