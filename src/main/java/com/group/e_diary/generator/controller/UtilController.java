@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Map;
 
 @RestController
@@ -16,16 +17,20 @@ public class UtilController {
 
     @Autowired
     private UploadService uploadService;
-//    @Autowired
-//    private GptService gptService;
+    @Autowired
+    private GptService gptService;
     @PostMapping("/upload")
     public ResponseResult uploadImg(MultipartFile img){
         return uploadService.uploadImg(img);
     }
 
-//    @PostMapping("/gpt")
-//    public R gpt(@RequestBody String query){
-//        return gptService.get(query);
-//    }
+    @PostMapping("/gpt")
+    public R gpt(@RequestBody String query){
+        try {
+            return gptService.get(query);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }

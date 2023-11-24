@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -28,12 +29,16 @@ class EDiaryApplicationTests {
     ResourceService resourceService;
     @Autowired
     UserResourceRelationService userResourceRelationService;
+    @Autowired
+    GptService gptService;
     @Test
-    void contextLoads() {
+    void contextLoads(){
+        try {
+            gptService.get("");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
-        List<UserResourceRelationEntity> userResourceRelationEntities = userResourceRelationService.list(new QueryWrapper<UserResourceRelationEntity>().eq("user_id", 0));
-        List<Long> list = userResourceRelationEntities.stream().map(userResourceRelation -> userResourceRelation.getResourceId()).collect(Collectors.toList());
-        System.out.println(list);
     }
 
 }
