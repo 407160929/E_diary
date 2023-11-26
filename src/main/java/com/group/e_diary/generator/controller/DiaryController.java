@@ -71,14 +71,7 @@ public class DiaryController {
         return R.ok();
     }
 
-    /**
-     * 删除
-     */
-    @PostMapping("/delete")
-    public R delete(@RequestBody int diaryId){
-        //删除日记
-        diaryService.removeById(diaryId);
-        return R.ok();
-    }
+
+
 
 }
