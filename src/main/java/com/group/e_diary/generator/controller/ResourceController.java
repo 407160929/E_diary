@@ -60,6 +60,15 @@ public class ResourceController {
 		resourceService.save(resource);
         return R.ok();
     }
+    /**
+     * 更新
+     */
+    @PostMapping("/update")
+    public R update(@RequestBody ResourceEntity resource){
+        //上传素材
+        resourceService.updateById(resource);
+        return R.ok();
+    }
 
 
     /**
