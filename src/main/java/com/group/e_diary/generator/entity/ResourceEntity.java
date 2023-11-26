@@ -43,7 +43,6 @@ public class ResourceEntity implements Serializable {
 	/**
 	 * 
 	 */
-	@TableLogic
 	private Integer isDelete;
 	/**
 	 * 

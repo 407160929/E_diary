@@ -39,7 +39,6 @@ public class DiaryEntity implements Serializable {
 	/**
 	 * 
 	 */
-	@TableLogic
 	private Integer isDelete;
 	/**
 	 * 
