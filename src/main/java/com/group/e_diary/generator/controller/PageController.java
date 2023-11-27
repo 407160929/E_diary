@@ -67,7 +67,7 @@ public class PageController {
         }
         page.setIndexId(max+1);
         pageService.save(page);
-        return R.ok();
+        return R.ok().put("data",page);
     }
 
     /**

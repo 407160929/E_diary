@@ -58,7 +58,7 @@ public class DiaryController {
     public R save(@RequestBody DiaryEntity diary){
         //创建日记
 		diaryService.save(diary);
-        return R.ok();
+        return R.ok().put("data",diary);
     }
 
     /**
