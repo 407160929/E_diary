@@ -39,6 +39,7 @@ public class SearchController {
                 DiaryPageRelation diaryPageRelation = new DiaryPageRelation();
                 diaryPageRelation.setDiaryId(diaryEntity.getId());
                 diaryPageRelation.setPageId(pageEntity.getId());
+                diaryPageRelation.setDiaryName(diaryEntity.getName());
                 diaryPageRelationList.add(diaryPageRelation);
             }
         }

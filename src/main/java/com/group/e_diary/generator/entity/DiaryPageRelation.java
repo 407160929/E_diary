@@ -6,5 +6,7 @@ import lombok.Data;
 public class DiaryPageRelation {
     private Long diaryId;
 
+    private String diaryName;
+
     private Long pageId;
 }
