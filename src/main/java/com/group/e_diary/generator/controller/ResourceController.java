@@ -51,6 +51,17 @@ public class ResourceController {
         return R.ok().put("resource", resource);
     }
 
+    @GetMapping("/hot")
+    public R getHot(){
+        //获取热榜前十
+        List<ResourceEntity> entities = resourceService.list(new QueryWrapper<ResourceEntity>().orderByDesc("likes"));
+        List<Long> list = entities.stream().map(entity -> entity.getId()).collect(Collectors.toList());
+        if(list.size() > 10){
+            list = list.subList(0, 10);
+        }
+        return R.ok().put("data",list);
+    }
+
     /**
      * 保存
      */

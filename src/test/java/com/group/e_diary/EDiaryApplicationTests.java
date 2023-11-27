@@ -33,12 +33,10 @@ class EDiaryApplicationTests {
     GptService gptService;
     @Test
     void contextLoads(){
-        try {
-            gptService.get("什么是太阳");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
+        List<ResourceEntity> entities = resourceService.list(new QueryWrapper<ResourceEntity>().orderByDesc("likes"));
+        List<Long> list = entities.stream().map(entity -> entity.getId()).collect(Collectors.toList());
+        List<Long> list1 = list.subList(0, 6);
+        System.out.println(list1);
     }
 
 }
