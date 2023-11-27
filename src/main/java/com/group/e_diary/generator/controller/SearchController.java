@@ -27,7 +27,7 @@ public class SearchController {
     @Autowired
     PageService pageService;
 
-    @PostMapping("/DiaryPage")
+    @PostMapping("/diaryPage")
     public R search(@RequestBody QueryForSearch query){
         //todo 全范围搜索
         Long userId = query.getUserId();
