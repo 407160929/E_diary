@@ -2,7 +2,7 @@ package com.group.e_diary.generator.controller;
 
 import com.group.common.utils.R;
 import com.group.common.utils.ResponseResult;
-import com.group.e_diary.generator.entity.Query;
+import com.group.e_diary.generator.entity.QueryForGpt;
 import com.group.e_diary.generator.service.GptService;
 import com.group.e_diary.generator.service.UploadService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class UtilController {
     }
 
     @PostMapping("/gpt")
-    public R gpt(@RequestBody Query query){
+    public R gpt(@RequestBody QueryForGpt query){
         try {
             return gptService.get(query.getQuery());
         } catch (IOException e) {
